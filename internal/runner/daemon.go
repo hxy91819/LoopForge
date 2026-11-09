@@ -1211,7 +1211,7 @@ func cloneRepository(ctx context.Context, workspace string, repo *domain.RunnerR
 		return cmd
 	}, watch)
 	if err != nil {
-		return fmt.Errorf("git clone %s: %w (%s)", repo.CloneURL, err, cloneOutput([]byte(tail), repo.GitToken))
+		return fmt.Errorf("git clone %s: %w (%s)", domain.StripURLCredentials(repo.CloneURL), err, cloneOutput([]byte(tail), repo.GitToken))
 	}
 	// The branch steps below keep the bound they always had.
 	cloneCtx := ctx
