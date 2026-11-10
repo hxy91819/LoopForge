@@ -2,6 +2,12 @@
 
 Platform releases use `vX.Y.Z` tags and publish `ghcr.io/tencent/loopforge`. LoopForge Local packages use `local-vX.Y.Z` tags and are published by manually running the `release-local` workflow.
 
+## Unreleased
+
+- Repository clone URLs no longer carry credentials. Saving a `cloneUrl` with a user name or password, such as `https://user:token@github.com/acme/app.git`, is rejected with a pointer to the Git token in personal settings; the repositories API and bootstrap payload strip credentials from rows saved earlier; runner clone errors and redacted Git output mask them. `ssh://git@host/...` and `git@host:path` remotes are still accepted.
+
+Repositories saved earlier with a token in `cloneUrl` keep cloning until they are saved again. Saving one from the studio stores the URL without the token, so first put the Git token in 个人配置, then save the repository.
+
 ## 0.3.4 — ARM64 platform images and shared CodeBuddy keys
 
 - Platform administrators create accounts and reset passwords under 平台管理 → 成员账号, so teams that turn off self sign-up no longer need the `loopforge-account` command.
